@@ -65,7 +65,7 @@
             android:layout_height="60dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/avatar"
-            android:src="@drawable/ic_pause"
+            android:src="@drawable/baseline_pause_24"
             android:background="@drawable/shape_circle"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -76,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@id/title_layout"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="12dp"
-        tools:listitem="@layout/item_album_detail"
+        tools:listitem="@layout/album_detail_item"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
