@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import com.example.proptit_protify.R
 
 
-
-
 class HomeFragment : Fragment() {
 
 
