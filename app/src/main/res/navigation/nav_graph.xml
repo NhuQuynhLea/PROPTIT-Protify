@@ -26,7 +26,7 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.proptit_protify.search.SearchFragment"
+        android:name="SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search">
         <action

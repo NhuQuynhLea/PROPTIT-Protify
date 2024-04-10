@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.proptit_protify.R
-import com.example.proptit_protify.data.Data
+import com.example.proptit_protify.pojo.Data
 import com.example.proptit_protify.databinding.ItemSongSearchBinding
 
 class SearchAdapter(private val onSongClick:(Data)->Unit):

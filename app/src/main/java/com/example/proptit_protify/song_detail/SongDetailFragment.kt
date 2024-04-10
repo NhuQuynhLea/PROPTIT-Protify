@@ -2,22 +2,21 @@ package com.example.proptit_protify.song_detail
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.OptIn
 import androidx.core.net.toUri
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.media3.common.MediaItem
+import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.proptit_protify.R
-import com.example.proptit_protify.data.Track
 import com.example.proptit_protify.databinding.FragmentSongDetailBinding
+import com.example.proptit_protify.pojo.Track
 import com.example.proptit_protify.service.MediaPlaybackService
 
 class SongDetailFragment : Fragment() {
@@ -36,7 +35,7 @@ class SongDetailFragment : Fragment() {
         _binding = FragmentSongDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    @OptIn(UnstableApi::class) override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.downButton.setOnClickListener {
             findNavController().popBackStack()
@@ -52,19 +51,10 @@ class SongDetailFragment : Fragment() {
                 .error(R.drawable.ic_pause)
                 .placeholder(R.drawable.ic_download)
                 .into(binding.avatar)
-            /*
             val intent = Intent(context, MediaPlaybackService::class.java).apply {
                 putExtra("songUri", selectedTrack?.preview)
             }
             context?.startService(intent)
-             */
-            exoPlayer = ExoPlayer.Builder(requireContext()).build()
-            binding.playerControl.player = exoPlayer
-            mediaItem = MediaItem.fromUri(selectedTrack?.preview?.toUri() ?:
-            "https://cdns-preview-1.dzcdn.net/stream/c-1ed50e5b3118c99be858fc305609e62a-15.mp3".toUri())
-            exoPlayer.setMediaItem(mediaItem)
-            exoPlayer.prepare()
-            exoPlayer.play()
         }
     }
     override fun onDestroyView() {

@@ -55,13 +55,12 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="16dp"/>
 
-
-    <androidx.media3.ui.LegacyPlayerControlView
+    <androidx.media3.ui.PlayerControlView
         android:id="@+id/player_control"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/artist"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
-    </androidx.media3.ui.LegacyPlayerControlView>
+    </androidx.media3.ui.PlayerControlView>
 </androidx.constraintlayout.widget.ConstraintLayout>

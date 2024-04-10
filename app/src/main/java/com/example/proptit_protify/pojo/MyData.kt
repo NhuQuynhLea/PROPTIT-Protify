@@ -1,4 +1,4 @@
-package com.example.proptit_protify.data
+package com.example.proptit_protify.pojo
 
 data class MyData(
     val `data`: List<Data>,
