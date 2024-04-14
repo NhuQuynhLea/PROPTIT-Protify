@@ -15,6 +15,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField ("String", "RAPID_API_KEY", "\"6ee5053a74msh40d24e084cea8e1p1db7ebjsn8c58152ee1e4\"")
+        buildConfigField ("String", "RAPID_API_HOST", "\"deezerdevs-deezer.p.rapidapi.com\"")
     }
 
     buildTypes {
@@ -26,6 +28,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -68,8 +71,4 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-
-    implementation ("io.github.cdimascio:java-dotenv:5.2.1")
-
-
 }
