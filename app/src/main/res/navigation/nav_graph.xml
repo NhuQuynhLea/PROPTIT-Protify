@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/albumDetailFragment">
+    app:startDestination="@id/searchFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -22,5 +22,24 @@
         <action
             android:id="@+id/action_albumDetailFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_songDetailFragment"
+            app:destination="@+id/songDetailFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/songDetailFragment"
+        android:name="com.example.proptit_protify.song_detail.SongDetailFragment"
+        android:label="song_detail_fragment"
+        tools:layout="@layout/fragment_song_detail">
+        <action
+            android:id="@+id/action_songDetailFragment_to_searchFragment"
+            app:destination="@+id/searchFragment"/>
     </fragment>
 </navigation>
