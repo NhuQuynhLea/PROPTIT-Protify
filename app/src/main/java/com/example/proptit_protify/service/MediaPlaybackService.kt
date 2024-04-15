@@ -31,7 +31,6 @@ class MediaPlaybackService : Service() {
     override fun onBind(p0: Intent?): IBinder? {
         return null
     }
-
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val song = intent?.getSerializableExtra("song") as? Song
         if(song != null){
@@ -39,7 +38,6 @@ class MediaPlaybackService : Service() {
             startMusic(song)
             //sendNotification(song)
         }
-
         val action = intent?.getIntExtra("action_music_service",0)
         if (action != null) {
             handleActionMusic(action)
@@ -116,7 +114,6 @@ class MediaPlaybackService : Service() {
     private fun getPendingIntent(context: Context, action: Int): PendingIntent? {
         val intent = Intent(this, MyBroadcastReceiver::class.java)
         intent.putExtra("action_music", action)
-        
         return PendingIntent.getBroadcast(context,action,intent,PendingIntent.FLAG_UPDATE_CURRENT)
     }
 
