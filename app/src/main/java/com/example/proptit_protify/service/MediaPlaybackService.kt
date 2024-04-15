@@ -25,7 +25,6 @@ class MediaPlaybackService : Service() {
     override fun onCreate() {
         super.onCreate()
         player = ExoPlayer.Builder(applicationContext).build()
-
         Log.e("TAG", "onCreate: " )
     }
 
@@ -57,10 +56,10 @@ class MediaPlaybackService : Service() {
     }
 
     private fun handleActionMusic(action:Int){
-        when(action){
-            ACTION_PAUSE -> pauseMusic()
-            ACTION_RESUME -> resumeMusic()
-        }
+       when(action){
+           ACTION_PAUSE -> pauseMusic()
+           ACTION_RESUME -> resumeMusic()
+       }
     }
 
     private fun resumeMusic() {
@@ -68,7 +67,7 @@ class MediaPlaybackService : Service() {
             player.prepare()
             player.play()
             isPlaying = true
-            //sendNotification(mSong)
+            sendNotification(mSong)
         }
     }
 
@@ -85,9 +84,8 @@ class MediaPlaybackService : Service() {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         val pendingIntent: PendingIntent =
-            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
-
-
+            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+            
         val remoteViews = RemoteViews(packageName,R.layout.layout_custom_notification)
         remoteViews.setTextViewText(R.id.artist_name_txt, song.artist)
         remoteViews.setTextViewText(R.id.title_song_txt, song.title)
@@ -118,10 +116,8 @@ class MediaPlaybackService : Service() {
     private fun getPendingIntent(context: Context, action: Int): PendingIntent? {
         val intent = Intent(this, MyBroadcastReceiver::class.java)
         intent.putExtra("action_music", action)
-
-        val flags = PendingIntent.FLAG_IMMUTABLE
-
-        return PendingIntent.getBroadcast(context, action, intent, flags)
+        
+        return PendingIntent.getBroadcast(context,action,intent,PendingIntent.FLAG_UPDATE_CURRENT)
     }
 
     override fun onDestroy() {
