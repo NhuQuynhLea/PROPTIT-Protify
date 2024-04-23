@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
+import android.widget.ImageView
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -34,6 +35,7 @@ class MediaPlaybackService : Service() {
 
     override fun onCreate() {
         super.onCreate()
+        player = ExoPlayer.Builder(applicationContext).build()
         Log.e("TAG", "onCreate: " )
         player = ExoPlayer.Builder(applicationContext).build()
     }
@@ -41,7 +43,6 @@ class MediaPlaybackService : Service() {
     override fun onBind(p0: Intent?): IBinder? {
         return null
     }
-    
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val songs = intent?.getSerializableExtra("songs") as? List<Song>
 
@@ -64,12 +65,14 @@ class MediaPlaybackService : Service() {
         return START_NOT_STICKY
     }
 
+
     private fun startMusic() {
       if(isPlaying){
           pauseMusic()
       }
 
         val mediaItem = MediaItem.fromUri(mListSong[position].resource)
+
         player.setMediaItem(mediaItem)
         player.prepare()
         player.play()
@@ -101,6 +104,7 @@ class MediaPlaybackService : Service() {
         if (isPlaying) {
             player.pause()
             isPlaying = false
+
             sendNotification(mSong)
             sendActionToFragment(ACTION_PAUSE)
         }
@@ -132,8 +136,7 @@ class MediaPlaybackService : Service() {
         }
         val pendingIntent: PendingIntent =
             PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-
-
+            
         val remoteViews = RemoteViews(packageName,R.layout.layout_custom_notification)
         remoteViews.setTextViewText(R.id.artist_name_txt, song.artist)
         remoteViews.setTextViewText(R.id.title_song_txt, song.title)
@@ -167,7 +170,6 @@ class MediaPlaybackService : Service() {
     private fun getPendingIntent(context: Context, action: Int): PendingIntent? {
         val intent = Intent(this, MyBroadcastReceiver::class.java)
         intent.putExtra("action_music", action)
-
         return PendingIntent.getBroadcast(context,action,intent,PendingIntent.FLAG_UPDATE_CURRENT)
     }
 
