@@ -2,13 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="64dp"
-    android:padding="10dp">
+    android:layout_height="81dp"
+    android:padding="10dp"
+    android:id="@+id/layout_notify">
 
     <ImageView
         android:id="@+id/img_song"
         android:layout_width="35dp"
         android:layout_height="35dp"
+        android:layout_centerVertical="true"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -19,6 +21,7 @@
         android:text="@string/album_title"
         android:textColor="@color/black"
         android:textSize="14sp"
+        android:layout_marginTop="12dp"
         android:layout_toEndOf="@id/img_song"/>
 
     <TextView
@@ -32,11 +35,27 @@
         android:layout_alignStart="@id/title_song_txt"/>
 
     <ImageView
+        android:id="@+id/previous_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/play_or_pause"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_previous" />
+
+    <ImageView
         android:id="@+id/play_or_pause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/next_btn"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_pause" />
+
+    <ImageView
+        android:id="@+id/next_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_pause" />
+        android:src="@drawable/ic_next" />
 
 </RelativeLayout>

@@ -31,7 +31,7 @@ class AlbumDetailAdapter (
         val currentData = dataList[position]
         holder.title.text = currentData.title
         holder.artist.text = currentData.artist
-        holder.itemLayout.setOnClickListener { listener.onCLick(currentData) }
+        holder.itemLayout.setOnClickListener { listener.onCLick(position) }
     }
     @SuppressLint("NotifyDataSetChanged")
     fun setData(dataList: List<Song>){
